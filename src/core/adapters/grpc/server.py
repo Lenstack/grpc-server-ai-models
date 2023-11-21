@@ -3,7 +3,7 @@ import grpc
 from grpc_reflection.v1alpha import reflection
 
 from pkg import whisper_pb2_grpc, piper_pb2_grpc, whisper_pb2, piper_pb2
-from src.core.applications.services import WhisperImplementation, PiperServiceImplementation
+from src.core.applications.app import WhisperImplementation, PiperServiceImplementation
 
 
 def GRPCServer():
