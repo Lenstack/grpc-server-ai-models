@@ -1,0 +1,16 @@
+syntax = "proto3";
+package pkg;
+
+service PiperModel {
+  rpc TextToSpeech(stream TextToSpeechRequest) returns (stream TextToSpeechResponse) {}
+}
+
+message TextToSpeechRequest {
+  string text = 1;
+  string voice = 2;
+  string language = 3;
+}
+
+message TextToSpeechResponse {
+  bytes audio = 1;
+}
