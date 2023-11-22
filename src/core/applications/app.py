@@ -4,32 +4,32 @@ from src.core.services.whisper import transcribe
 
 
 class WhisperImplementation(whisper_pb2_grpc.WhisperModelServicer):
-    def SpeechToText(self, request_iterator, context):
+    def SpeechToText(self, request, context):
         response = whisper_pb2.SpeechToTextResponse()
-        # Assuming request_iterator contains audio data in each request
-        for request in request_iterator:
-            try:
-                print("Received audio data..." + str(len(request.audio)))
-                # Transcribe each audio request
-                transcription = transcribe(audio=request.audio)
-                # Assuming response has a field called 'transcription' to store the result
-                response.text = transcription
-            except Exception as e:
-                print(f"Error occurred during transcription: {e}")
+        try:
+            print("Received audio data...")
+            # Transcribe each audio request
+            transcription = transcribe(audio_file=request.audio_file, language=request.language_target,
+                                       task=request.task, initial_prompt=request.initial_prompt, )
+            # Assuming response has a field called 'transcription' to store the result
+            response.text = transcription
+            print(f"Transcription: {transcription}")
+        except Exception as e:
+            print(f"Error occurred during transcription: {e}")
         return response
 
 
 class PiperServiceImplementation(piper_pb2_grpc.PiperModelServicer):
-    def TextToSpeech(self, request_iterator, context):
+    def TextToSpeech(self, request, context):
         response = piper_pb2.TextToSpeechResponse()
         # Assuming request_iterator contains text data in each request
-        for request in request_iterator:
-            try:
-                print("Received text data..." + request.text)
-                # Synthesize each text request
-                audio = speech(text=request.text)
-                # Assuming response has a field called 'audio' to store the result
-                response.audio = audio
-            except Exception as e:
-                print(f"Error occurred during synthesis: {e}")
+        try:
+            print("Received text data...")
+            # Synthesize each text request
+            audio = speech(text=request.text, speaker_voice=request.speaker_voice, language=request.language_target)
+            # Assuming response has a field called 'audio' to store the result
+            response.audio = audio
+            print(f"Audio: {audio}")
+        except Exception as e:
+            print(f"Error occurred during synthesis: {e}")
         return response

@@ -2,14 +2,16 @@ syntax = "proto3";
 package pkg;
 
 service WhisperModel {
-  rpc SpeechToText(stream SpeechToTextRequest) returns (stream SpeechToTextResponse) {}
+  rpc SpeechToText(SpeechToTextRequest) returns (SpeechToTextResponse) {}
 }
 
 message SpeechToTextRequest {
-  bytes audio = 1;
-  string language_target = 2;
-  string output_format = 3;
-  bool word_timestamps = 4;
+  string task = 1;
+  bytes audio_file = 2;
+  string initial_prompt = 3;
+  string language_target = 4;
+  string output_format = 5;
+  bool word_timestamps = 6;
 }
 
 message SpeechToTextResponse {

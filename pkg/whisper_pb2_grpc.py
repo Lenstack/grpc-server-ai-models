@@ -14,7 +14,7 @@ class WhisperModelStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.SpeechToText = channel.stream_stream(
+        self.SpeechToText = channel.unary_unary(
                 '/pkg.WhisperModel/SpeechToText',
                 request_serializer=whisper__pb2.SpeechToTextRequest.SerializeToString,
                 response_deserializer=whisper__pb2.SpeechToTextResponse.FromString,
@@ -24,7 +24,7 @@ class WhisperModelStub(object):
 class WhisperModelServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def SpeechToText(self, request_iterator, context):
+    def SpeechToText(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -33,7 +33,7 @@ class WhisperModelServicer(object):
 
 def add_WhisperModelServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'SpeechToText': grpc.stream_stream_rpc_method_handler(
+            'SpeechToText': grpc.unary_unary_rpc_method_handler(
                     servicer.SpeechToText,
                     request_deserializer=whisper__pb2.SpeechToTextRequest.FromString,
                     response_serializer=whisper__pb2.SpeechToTextResponse.SerializeToString,
@@ -49,7 +49,7 @@ class WhisperModel(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def SpeechToText(request_iterator,
+    def SpeechToText(request,
             target,
             options=(),
             channel_credentials=None,
@@ -59,7 +59,7 @@ class WhisperModel(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.stream_stream(request_iterator, target, '/pkg.WhisperModel/SpeechToText',
+        return grpc.experimental.unary_unary(request, target, '/pkg.WhisperModel/SpeechToText',
             whisper__pb2.SpeechToTextRequest.SerializeToString,
             whisper__pb2.SpeechToTextResponse.FromString,
             options, channel_credentials,

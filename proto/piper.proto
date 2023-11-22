@@ -2,12 +2,12 @@ syntax = "proto3";
 package pkg;
 
 service PiperModel {
-  rpc TextToSpeech(stream TextToSpeechRequest) returns (stream TextToSpeechResponse) {}
+  rpc TextToSpeech(TextToSpeechRequest) returns (TextToSpeechResponse) {}
 }
 
 message TextToSpeechRequest {
   string text = 1;
-  string voice = 2;
+  string speaker_voice = 2;
   string language = 3;
 }
 

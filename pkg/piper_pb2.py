@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0bpiper.proto\x12\x03pkg\"D\n\x13TextToSpeechRequest\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\r\n\x05voice\x18\x02 \x01(\t\x12\x10\n\x08language\x18\x03 \x01(\t\"%\n\x14TextToSpeechResponse\x12\r\n\x05\x61udio\x18\x01 \x01(\x0c\x32W\n\nPiperModel\x12I\n\x0cTextToSpeech\x12\x18.pkg.TextToSpeechRequest\x1a\x19.pkg.TextToSpeechResponse\"\x00(\x01\x30\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0bpiper.proto\x12\x03pkg\"L\n\x13TextToSpeechRequest\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\x15\n\rspeaker_voice\x18\x02 \x01(\t\x12\x10\n\x08language\x18\x03 \x01(\t\"%\n\x14TextToSpeechResponse\x12\r\n\x05\x61udio\x18\x01 \x01(\x0c\x32S\n\nPiperModel\x12\x45\n\x0cTextToSpeech\x12\x18.pkg.TextToSpeechRequest\x1a\x19.pkg.TextToSpeechResponse\"\x00\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -21,9 +21,9 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'piper_pb2', _globals)
 if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
   _globals['_TEXTTOSPEECHREQUEST']._serialized_start=20
-  _globals['_TEXTTOSPEECHREQUEST']._serialized_end=88
-  _globals['_TEXTTOSPEECHRESPONSE']._serialized_start=90
-  _globals['_TEXTTOSPEECHRESPONSE']._serialized_end=127
-  _globals['_PIPERMODEL']._serialized_start=129
-  _globals['_PIPERMODEL']._serialized_end=216
+  _globals['_TEXTTOSPEECHREQUEST']._serialized_end=96
+  _globals['_TEXTTOSPEECHRESPONSE']._serialized_start=98
+  _globals['_TEXTTOSPEECHRESPONSE']._serialized_end=135
+  _globals['_PIPERMODEL']._serialized_start=137
+  _globals['_PIPERMODEL']._serialized_end=220
 # @@protoc_insertion_point(module_scope)

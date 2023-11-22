@@ -14,7 +14,7 @@ class PiperModelStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.TextToSpeech = channel.stream_stream(
+        self.TextToSpeech = channel.unary_unary(
                 '/pkg.PiperModel/TextToSpeech',
                 request_serializer=piper__pb2.TextToSpeechRequest.SerializeToString,
                 response_deserializer=piper__pb2.TextToSpeechResponse.FromString,
@@ -24,7 +24,7 @@ class PiperModelStub(object):
 class PiperModelServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def TextToSpeech(self, request_iterator, context):
+    def TextToSpeech(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -33,7 +33,7 @@ class PiperModelServicer(object):
 
 def add_PiperModelServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'TextToSpeech': grpc.stream_stream_rpc_method_handler(
+            'TextToSpeech': grpc.unary_unary_rpc_method_handler(
                     servicer.TextToSpeech,
                     request_deserializer=piper__pb2.TextToSpeechRequest.FromString,
                     response_serializer=piper__pb2.TextToSpeechResponse.SerializeToString,
@@ -49,7 +49,7 @@ class PiperModel(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def TextToSpeech(request_iterator,
+    def TextToSpeech(request,
             target,
             options=(),
             channel_credentials=None,
@@ -59,7 +59,7 @@ class PiperModel(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.stream_stream(request_iterator, target, '/pkg.PiperModel/TextToSpeech',
+        return grpc.experimental.unary_unary(request, target, '/pkg.PiperModel/TextToSpeech',
             piper__pb2.TextToSpeechRequest.SerializeToString,
             piper__pb2.TextToSpeechResponse.FromString,
             options, channel_credentials,

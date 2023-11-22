@@ -1,9 +1,2 @@
-import torch
-
-
-def speech(model_name="",
-           device=("cuda" if torch.cuda.is_available() else "cpu"), text="",
-           speaker_wav="my/cloning/audio.wav", language="en"
-           ):
-    # Load the model from the Piper
+def speech(model_name="", text="", speaker_voice="models/voices/speaker.wav", language="en"):
     return
