@@ -10,7 +10,8 @@ class WhisperImplementation(whisper_pb2_grpc.WhisperModelServicer):
             print("Received audio data...")
             # Transcribe each audio request
             transcription = transcribe(audio_file=request.audio_file, language=request.language_target,
-                                       task=request.task, initial_prompt=request.initial_prompt, )
+                                       task=request.task, initial_prompt=request.initial_prompt,
+                                       word_timestamps=request.word_timestamps)
             # Assuming response has a field called 'transcription' to store the result
             response.text = transcription
             print(f"Transcription: {transcription}")
