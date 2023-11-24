@@ -11,17 +11,17 @@ def transcribe(model_name="base", initial_prompt="", audio_file="",
     try:
         audio_model = WhisperModel(model_name, device="cpu", compute_type="int8", download_root="../models",
                                    local_files_only=True)
-        segments, _ = audio_model.transcribe("../audio/records.wav", beam_size=5, task=task, language=language,
-                                             word_timestamps=word_timestamps)
-        response = ''.join(segment.text for segment in segments)
 
-        response_formated = isOutputFormat(response, output_format)
+        segments, info = audio_model.transcribe("../audio/records.wav", beam_size=5, task=task, language=language,
+                                                word_timestamps=word_timestamps)
+
+        response = isOutputFormat(segments, info, output_format)
 
         output_file = f"../audio/records_{datetime.now().strftime('%Y%m%d%H%M%S')}.{output_format}"
         with open(output_file, "w") as f:
-            f.write(response_formated)
+            f.write(response)
 
-        return response_formated
+        return response
 
     except Exception as e:
         return f"Transcription failed: {str(e)}"
