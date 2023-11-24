@@ -19,7 +19,6 @@ def to_json(response, info):
     # "start", end: "end", word: "word", probability: "probability"}]}}
     json_response = {}
     for segment in response:
-        print(info)
         json_response = {
             'text': segment.text,
             'language': info.language,
@@ -49,12 +48,12 @@ def to_json(response, info):
     return json.dumps(json_response)
 
 
-def to_txt(response):
+def to_txt(response, info):
     # Convert the response to txt format
     return '\n'.join(segment.text for segment in response)
 
 
-def to_vtt(response):
+def to_vtt(response, info):
     # Convert the response to vtt format {start} --> {end} {text} \n
     vtt = ''
     for segment in response:
@@ -62,7 +61,7 @@ def to_vtt(response):
     return vtt
 
 
-def to_srt(response):
+def to_srt(response, info):
     # Convert the response to srt format {index} \n {start} --> {end} \n {text} \n
     srt = ''
     index = 1
@@ -72,7 +71,7 @@ def to_srt(response):
     return srt
 
 
-def to_tsv(response):
+def to_tsv(response, info):
     # Convert the response to tsv format {start} \t {end} \t {text} \n
     tsv = ''
     for segment in response:
