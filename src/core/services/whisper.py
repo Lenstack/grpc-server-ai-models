@@ -17,7 +17,7 @@ def transcribe(model_name="base", initial_prompt="", audio_file="",
 
         response = isOutputFormat(segments, info, output_format)
 
-        output_file = f"../audio/records_{datetime.now().strftime('%Y%m%d%H%M%S')}.{output_format}"
+        output_file = f"../audio/records_output.{output_format}"
         with open(output_file, "w") as f:
             f.write(response)
 
