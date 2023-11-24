@@ -1,4 +1,4 @@
 grpcio
 grpcio-tools
 grpcio_reflection
-openai-whisper
+faster-whisper
