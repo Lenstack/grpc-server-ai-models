@@ -18,9 +18,8 @@ def transcribe(initial_prompt="", audio_file="", task="", language="", output_fo
         response = isOutputFormat(segments, info, output_format)
 
         output_file = f"../audio/records_output.{output_format}"
-        with open(output_file, "w") as f:
-            # Write response in chunks if it's a large response
-            chunk_size = 1024  # Define your chunk size here
+        with open(output_file, "w", encoding="utf-8") as f:
+            chunk_size = 1024
             for i in range(0, len(response), chunk_size):
                 f.write(response[i:i + chunk_size])
 
