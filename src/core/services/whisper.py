@@ -1,19 +1,19 @@
-from datetime import datetime
 from faster_whisper import WhisperModel
 from src.core.utils.output_format import isOutputFormat
 
+# Create the model instance outside the function to reuse it if possible
+audio_model = WhisperModel("base", device="cpu", compute_type="int8", download_root="../models")
 
-def transcribe(model_name="base", initial_prompt="", audio_file="",
-               task="", language="", output_format="", word_timestamps=False):
+
+def transcribe(initial_prompt="", audio_file="", task="", language="", output_format="", word_timestamps=False):
     if not audio_file:
         return "No audio file found or provided"
 
     try:
-        audio_model = WhisperModel(model_name, device="cpu", compute_type="int8", download_root="../models",
-                                   local_files_only=True)
+        global audio_model  # Use the model instance defined outside the function
 
         segments, info = audio_model.transcribe("../audio/records.wav", beam_size=5, task=task, language=language,
-                                                word_timestamps=word_timestamps)
+                                                initial_prompt=initial_prompt, word_timestamps=word_timestamps)
 
         response = isOutputFormat(segments, info, output_format)
 
